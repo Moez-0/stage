@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10%;
+        }
+        .grid{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: space-evenly;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>List of Categories</h1>
+    <ul class="grid">
+        {% for category in categories %}
+            <li>
+                <h2>{{ category.name }}</h2>
+                <ul>
+                    {% for product in category.product_set.all %}
+                        <li>{{ product.name }} - {{ product.description }} - ${{ product.price }}</li>
+                    {% empty %}
+                        <li>No products available</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>No categories available</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

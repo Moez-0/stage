@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Detail</title>
+</head>
+<body>
+    <h1>Category: {{ category.name }}</h1>
+    <h2>Products:</h2>
+    <ul>
+        {% for product in category.product_set.all %}
+            <li>{{ product.name }} - {{ product.description }} - ${{ product.price }}</li>
+        {% empty %}
+            <li>No products available for this category</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
